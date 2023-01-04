@@ -17,13 +17,19 @@ class TaskListCreate extends StatelessWidget {
     return tasks.isNotEmpty
         ? ListView.builder(
             itemBuilder: (context, index) {
+              final task = tasks[index];
               return SingleTaskTile(
-                  taskTitle: tasks[index].taskName,
-                  isChecked: tasks[index].isDone,
-                  onChanged: (newValue) {
-                    Provider.of<TaskData>(context, listen: false)
-                        .toggleTask(tasks[index]);
-                  });
+                taskTitle: task.taskName,
+                isChecked: task.isDone,
+                onChanged: (newValue) {
+                  Provider.of<TaskData>(context, listen: false)
+                      .toggleTask(task);
+                },
+                onLongPress: () {
+                  Provider.of<TaskData>(context, listen: false)
+                      .deleteTask(task);
+                },
+              );
             },
             itemCount: tasks.length,
           )

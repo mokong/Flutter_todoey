@@ -5,12 +5,14 @@ class SingleTaskTile extends StatelessWidget {
   final String taskTitle;
   final bool isChecked;
   final Function(bool?) onChanged;
+  final GestureLongPressCallback? onLongPress;
 
   const SingleTaskTile(
       {super.key,
       required this.taskTitle,
       required this.isChecked,
-      required this.onChanged});
+      required this.onChanged,
+      required this.onLongPress});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class SingleTaskTile extends StatelessWidget {
             onChanged: onChanged,
           ),
           dense: true,
+          onLongPress: onLongPress,
         ),
       ),
     );
